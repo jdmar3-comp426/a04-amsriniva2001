@@ -43,9 +43,10 @@ app.get("/app/users", (req, res) => {
 	const info = stmt.run('Joey', 2);
 	console.log(info.changes); 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
-	const stmt = db.prepare('DELETE FROM userinfo WHERE id = ?');
-	const info = stmt.run();
-	console.log(info.changes); 
+app.delete("/app/delete/user/:id", (req, res) => {
+	const stmt = db.prepare('DELETE FROM userinfo WHERE id = ?').run();
+	res.status(200).json({"message":"1 record deleted: (200)"});
+});
 // Default response for any other request
 app.use(function(req, res){
 	res.json({"message":"Your API is working!"});
