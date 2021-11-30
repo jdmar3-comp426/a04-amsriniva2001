@@ -29,22 +29,22 @@ app.get("/app/", (req, res, next) => {
 	console.log(info.changes); 
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users", (req, res) => {	
-	const stmt = db.prepare("SELECT * FROM userinfo");
-	const all = stmt.all();
+	 stmt = db.prepare("SELECT * FROM userinfo");
+	 all = stmt.all();
 	res.status(200).json(stmt);
 });
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
-	const stmt = db.prepare("SELECT * FROM userinfo WHERE id = 2");
-	const all = stmt.all();
+	 stmt = db.prepare("SELECT * FROM userinfo WHERE id = 2");
+	 all = stmt.all();
 	res.status(200).json(stmt);
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
-	const stmt = db.prepare('UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?');
-	const info = stmt.run('Joey', 2);
+	stmt = db.prepare('UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?');
+	info = stmt.run('Joey', 2);
 	console.log(info.changes); 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
 app.delete("/app/delete/user/:id", (req, res) => {
-	const stmt = db.prepare('DELETE FROM userinfo WHERE id = ?').run();
+	stmt = db.prepare('DELETE FROM userinfo WHERE id = ?').run();
 	res.status(200).json({"message":"1 record deleted: (200)"});
 });
 // Default response for any other request
