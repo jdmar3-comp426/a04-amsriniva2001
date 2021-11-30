@@ -24,24 +24,24 @@ app.get("/app/", (req, res, next) => {
 
 // Define other CRUD API endpoints using express.js and better-sqlite3
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
-	const stmt = db.prepare('INSERT INTO userinfo (user, pass) VALUES (?, ?)');
-	const info = stmt.run('Joey', 2);
-	console.log(info.changes); 
+	//db.prepare('INSERT INTO userinfo (user, pass) VALUES (?, ?)');
+	//stmt.run('Joey', 2);
+	//console.log(info.changes); 
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users", (req, res) => {	
-	 stmt = db.prepare("SELECT * FROM userinfo");
-	 all = stmt.all();
-	res.status(200).json(stmt);
+	// const stmt = db.prepare("SELECT * FROM userinfo");
+	// all = stmt.all();
+	//res.status(200).json(stmt);
 });
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
-	 stmt = db.prepare("SELECT * FROM userinfo WHERE id = 2");
-	 all = stmt.all();
-	res.status(200).json(stmt);
+	 //stmt = db.prepare("SELECT * FROM userinfo WHERE id = 2");
+	 //all = stmt.all();
+	//res.status(200).json(stmt);
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
-	stmt = db.prepare('UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?');
-	info = stmt.run('Joey', 2);
-	console.log(info.changes); 
+	//stmt = db.prepare('UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?');
+	//info = stmt.run('Joey', 2);
+	//console.log(info.changes); 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
 app.delete("/app/delete/user/:id", (req, res) => {
 	db.prepare('DELETE FROM userinfo WHERE id = ?').run();
