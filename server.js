@@ -29,9 +29,9 @@ app.get("/app/", (req, res, next) => {
 	//console.log(info.changes); 
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users", (req, res) => {	
-	// const stmt = db.prepare("SELECT * FROM userinfo");
-	// all = stmt.all();
-	//res.status(200).json(stmt);
+	const stmt = db.prepare("SELECT * FROM userinfo");
+	all = stmt.all();
+	res.status(200).json(stmt);
 });
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
@@ -44,8 +44,8 @@ app.get("/app/users", (req, res) => {
 	//console.log(info.changes); 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
 app.delete("/app/delete/user/:id", (req, res) => {
-	db.prepare('DELETE FROM userinfo WHERE id = ?').run();
-	db.status(200).json({"message":"1 record deleted: (200)"});
+	res.prepare('DELETE FROM userinfo WHERE id = ?').run();
+	res.status(200).json({"message":"1 record deleted: (200)"});
 });
 // Default response for any other request
 app.use(function(req, res){
