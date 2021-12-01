@@ -27,12 +27,11 @@ app.get("/app/", (req, res, next) => {
 app.post("/app/new/", (req, res) => {	
 	const stmt = db.prepare("INSERT INTO userinfo (user, pass) VALUES (?, ?)");
 	const info = stmt.run(req.body.user, req.body.pass);
-	res.status(201).send("We made a new database record.");
+	res.status(201).json({"message": + info.changes + " record created: ID " + info.lastInsertRowid});
 });
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users", (req, res) => {	
-	const stmt = db.prepare("SELECT * FROM userinfo");
-	all = stmt.all();
+	const stmt = db.prepare("SELECT * FROM userinfo").all();
 	res.status(200).json(stmt);
 });
 
