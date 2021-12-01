@@ -31,15 +31,16 @@ app.post("/app/new/", (req, res) => {
 );
 });
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
-app.get("/app/users", (req, res) => {	
+app.get("/app/users/", (req, res) => {	
 	const stmt = db.prepare("SELECT * FROM userinfo").all();
 	res.status(200).json(stmt);
 });
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
-	 //stmt = db.prepare("SELECT * FROM userinfo WHERE id = 2");
-	 //all = stmt.all();
-	//res.status(200).json(stmt);
+app.get("/app/users/:id", (req, res) => {
+	 stmt = db.prepare("SELECT * FROM userinfo WHERE id = 2").all;
+	 res.status(200).json(stmt);
+});
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 	//stmt = db.prepare('UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?');
 	//info = stmt.run('Joey', 2);
