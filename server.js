@@ -38,8 +38,10 @@ app.get("/app/users/", (req, res) => {
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
 app.get("/app/users/:req.params.id", (req, res) => {
-	 stmt = db.prepare("SELECT * FROM userinfo WHERE id = 2").all;
-	 res.status(200).json(stmt);
+	 const stmt = db.prepare("SELECT * FROM userinfo WHERE id = 2").all;
+	 
+	 res.status(200).json({"id": info.lastInsertRowid,"user":"newtest","pass":"38a7744f5523335db845ff1976bf4747"}
+);
 });
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 	//stmt = db.prepare('UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass) WHERE id = ?');
