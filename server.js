@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set server port
-HTTP_PORT = 5000;
+var HTTP_PORT = 5000;
 // Start server
 app.listen(HTTP_PORT, () => {
     console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
@@ -27,7 +27,8 @@ app.get("/app/", (req, res, next) => {
 app.post("/app/new/", (req, res) => {	
 	const stmt = db.prepare("INSERT INTO userinfo (user, pass) VALUES (?, ?)");
 	const info = stmt.run(req.body.user, md5(req.body.pass));
-	res.status(201).send(info.changes + " record created: ID " + info.lastInsertRowid);
+	res.status(201).json({"message": info.changes + " record created: ID " + info.lastInsertRowid}
+);
 });
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users", (req, res) => {	
