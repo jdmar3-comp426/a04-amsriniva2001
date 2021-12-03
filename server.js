@@ -51,7 +51,7 @@ app.patch("/app/update/user/:id", (req,res) => {
 app.delete("/app/delete/user/:id", (req, res) => {
 	const stmt = db.prepare('DELETE FROM userinfo WHERE id = ?');
 	const info = stmt.run(req.params.id);
-	res.json({"message":"1 record deleted: "  + req.params.id + " (200)"});
+	res.json({"message":"1 record deleted: ID "  + req.params.id + " (200)"});
 	res.status(200);
 });
 // Default response for any other request
